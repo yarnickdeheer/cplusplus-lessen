@@ -1,17 +1,21 @@
 #pragma once
 #include <string>
 #include "Koffer.h"
+#include<iostream>
+#include <vector>
 class Caravan {
-public:
-	Caravan();
-	Koffer kof;
-	void inhoud();
-	std::string color(std::string k);
+private:
+	Koffer* koffer;	
 	std::string kleur;
+public:
+	Caravan() : kleur("grijs") {};
+	Caravan(std::string Kleur) : kleur(Kleur) {};
+	Caravan(const Caravan& c);
+	Caravan& operator=(const Caravan& c);
 
-	std::string soort;
-	std::string VulCaravan(std::string k);
-
-
-
+	void inhoud(Koffer* koffer);
+	
+	Koffer* getInhoud();
+	~Caravan();
+	std::string getKleur();
 };

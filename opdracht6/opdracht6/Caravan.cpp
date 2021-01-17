@@ -3,23 +3,31 @@
 #include "Sokken.h"
 #include "Caravan.h"
 #include <iostream>
-Caravan::Caravan() {
-    this->kleur = "grijs";
- 
-    this->soort = "caravan";
+Caravan::Caravan(const Caravan& c) {
+	if (this == &c) return;
+	kleur = c.kleur;
+	inhoud(new Koffer(*c.koffer));
+	return;
+}
+Caravan& Caravan::operator=(const Caravan& c)
+{
+	if (this == &c) return *this;
+	delete koffer;
+	inhoud(new Koffer(*c.koffer));
+	return *this;
+}
+void Caravan::inhoud(Koffer* _koffer) {
+    koffer = _koffer;
+}
+Koffer* Caravan::getInhoud() {
+    return koffer;
 }
 
-void Caravan::inhoud() {
-    std::cout << "caravan inhoud: " << kof.soort << " en daarin zit: " << kof.sok.soort << std::endl;
+Caravan::~Caravan()
+{
+	delete koffer;
 }
-
-std::string Caravan::VulCaravan(std::string k) {
-    kof = Koffer(k);
-    kof.VulKoffer("sokken");
-    return k;
-}
-std::string Caravan::color(std::string k) {
-    this->kleur = k;
-    
-    return this->kleur;
+std::string Caravan::getKleur()
+{
+	return kleur;
 }

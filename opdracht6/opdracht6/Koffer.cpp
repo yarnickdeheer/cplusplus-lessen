@@ -2,39 +2,34 @@
 #include "Koffer.h"
 #include "Sokken.h"
 #include <iostream>
-Koffer::Koffer() {
-    this->kleur = "grijs";
 
-    this->soort = "";
+
+
+Koffer::Koffer(const Koffer& k) {
+	if (this == &k) return;
+	kleur = k.kleur;
+	inhoud(new Sokken(*k.sokken));
+	return;
+}
+Koffer& Koffer::operator=(const Koffer& k)
+{
+	if (this == &k) return *this;
+	delete sokken;
+	inhoud(new Sokken(*k.sokken));
+	return *this;
+}
+void Koffer::inhoud(Sokken* _sokken) {
+	sokken = _sokken;
+}
+Sokken* Koffer::getInhoud() {
+	return sokken;
 }
 
-Koffer::Koffer(std::string soort) {
-    this->soort = soort;
+Koffer::~Koffer()
+{
+	delete sokken;
 }
-
-
-
-void Koffer::Showinhoud() {
-    std::cout << " kleur van inhoud voor: " << sok.kleur << std::endl;
+std::string Koffer::getKleur()
+{
+	return kleur;
 }
-void Koffer::inhoud() {
-    std::cout << "koffer inhoud: "  << sok.soort << std::endl;
-
-}
-
-std::string Koffer::color(std::string k) {
-    this->kleur = k;
-    return this->kleur;
-}
-std::string Koffer::Soort(std::string k) {
-    this->soort = k;
-    return k;
-}
-
-
-std::string Koffer::VulKoffer(std::string k) {
-    sok = Sokken(k);
-    return k;
-}
-
-

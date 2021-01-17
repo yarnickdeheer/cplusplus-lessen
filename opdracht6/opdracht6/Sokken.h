@@ -1,15 +1,17 @@
 #pragma once
-
+#include<iostream>
 #include <string>
 
 class Sokken {
-public:
-	Sokken();
-	Sokken(std::string soort);
-	std::string color(std::string k);
-	std::string kleur;
-	std::string soort;
-	std::string Soort(std::string k);
+private: 
 
+	std::string kleur;
+public:
+	Sokken() : kleur("grijs") {};
+	Sokken(std::string Kleur) : kleur(Kleur) {};
+	Sokken(const Sokken& c);
+	Sokken& operator=(const Sokken& c);
+
+	std::string getKleur();
 
 };

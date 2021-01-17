@@ -1,20 +1,23 @@
 #pragma once
 #include <string>
 #include "Sokken.h"
+#include<iostream>
+#include <vector>
 class Koffer {
-public:
-	Koffer();
-	Koffer(std::string soort);
-	Sokken sok;
-	void inhoud();
-	void Showinhoud();
-	std::string color(std::string k);
+
+private:
+	Sokken* sokken;
 	std::string kleur;
+public:
 
-	std::string soort;
-	std::string Soort(std::string k);
+	Koffer() : kleur("grijs") {};
+	Koffer(std::string Kleur) : kleur(Kleur) {};
+	Koffer(const Koffer& k);
+	Koffer& operator=(const Koffer& k);
 
-	std::string VulKoffer(std::string k);
-
-
+	void inhoud(Sokken* koffer);
+	
+	Sokken* getInhoud();
+	~Koffer();
+	std::string getKleur();
 };

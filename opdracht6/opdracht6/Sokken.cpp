@@ -1,22 +1,21 @@
 #include <string>
 #include "Sokken.h"
 #include <iostream>
-Sokken::Sokken() {
-    this->kleur = "grijs";
-
-    this->soort = "";
-}
-Sokken::Sokken(std::string soort) {
-    this->soort = soort;
+Sokken::Sokken(const Sokken& c)
+{
+	if (this == &c) return;
+	kleur = c.kleur;
+	return;
 }
 
-std::string Sokken::color(std::string k) {
-    this->kleur = k;
-    return this->kleur;
+Sokken& Sokken::operator=(const Sokken& s)
+{
+	if (this == &s) return *this;
+	kleur = s.kleur;
+	return *this;
 }
 
-std::string Sokken::Soort(std::string k) {
-    this->soort = k;
-    return k;
+std::string Sokken::getKleur()
+{
+	return kleur;
 }
-
